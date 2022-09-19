@@ -17,5 +17,8 @@ namespace DatingApp.API.Data.Entities
 
         [MaxLength(256)]
         public string Email { get; set; }
+
+        public byte[] PasswordHashed { get; set; }
+        public byte[] PasswordSalt { get; set; }
     }
 }
