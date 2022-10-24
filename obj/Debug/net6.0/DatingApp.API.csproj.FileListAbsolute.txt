@@ -33,3 +33,11 @@ D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\Microsoft.EntityFramewo
 D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
 D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\MySqlConnector.dll
 D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\HocTap\KTHDV\DatingApp\DatingApp.API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
