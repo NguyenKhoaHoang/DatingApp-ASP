@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
  
 namespace DatingApp.API.Controllers
 {
+    [Route("api/auth")]
+    [AllowAnonymous]
     public class AuthController : BaseController
     {
         private readonly DataContext _context;
@@ -41,10 +43,7 @@ namespace DatingApp.API.Controllers
             _context.AppUsers.Add(newUser);
             _context.SaveChanges();
             var token = _tokenService.CreateToken(newUser.Username);
-            return Ok(new UserTokenDto{
-                Username = newUser.Username,
-                Token = token
-            });
+            return Ok(token);
         }
  
         [HttpPost("login")]
@@ -70,10 +69,7 @@ namespace DatingApp.API.Controllers
             }
  
             var token = _tokenService.CreateToken(currentUser.Username);
-            return Ok(new UserTokenDto{
-                Username = currentUser.Username,
-                Token = token
-            });
+            return Ok(token);
         }
 
         // [Authorize]
