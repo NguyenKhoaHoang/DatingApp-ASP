@@ -15,61 +15,42 @@ namespace DatingApp.API.Controllers
     {
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
+        private readonly IAuthService _authService;
         public AuthController(
+            IAuthService authService,
             DataContext context,
             ITokenService tokenService)
         {
             _context = context;
             _tokenService = tokenService;
+            _authService = authService;
         }
  
         [HttpPost("register")]
-        public IActionResult Register([FromBody] AuthUserDto authUserDto)
+        public IActionResult Register([FromBody] RegisterUserDto registerUserDto)
         {
-            authUserDto.Username = authUserDto.Username.ToLower();
-            if (_context.AppUsers.Any(u => u.Username == authUserDto.Username))
+            try
             {
-                return BadRequest("Username is already registered!");
+                return Ok(_authService.Register(registerUserDto));
             }
- 
-            using var hmac = new HMACSHA512();
-            var passwordBytes = Encoding.UTF8.GetBytes(authUserDto.Password);
-            var newUser = new User
+            catch (BadHttpRequestException ex)
             {
-                Username = authUserDto.Username,
-                PasswordSalt = hmac.Key,
-                PasswordHashed = hmac.ComputeHash(passwordBytes)
-            };
-            _context.AppUsers.Add(newUser);
-            _context.SaveChanges();
-            var token = _tokenService.CreateToken(newUser.Username);
-            return Ok(token);
+                return BadRequest(ex.Message);
+            }
         }
  
         [HttpPost("login")]
         public IActionResult Login([FromBody] AuthUserDto authUserDto)
         {
-            authUserDto.Username = authUserDto.Username.ToLower();
-            var currentUser = _context.AppUsers
-                .FirstOrDefault(u => u.Username == authUserDto.Username);
-           
-            if (currentUser == null)
+            try
             {
-                return Unauthorized("Username is invalid.");
+                return Ok(_authService.Login(authUserDto));
             }
- 
-            using var hmac = new HMACSHA512(currentUser.PasswordSalt);
-            var passwordBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(authUserDto.Password));
-            for (int i = 0; i < currentUser.PasswordHashed.Length; i++)
+            catch (UnauthorizedAccessException ex)
             {
-                if (currentUser.PasswordHashed[i] != passwordBytes[i])
-                {
-                    return Unauthorized("Password is invalid.");
-                }
+                return Unauthorized(ex.Message);
             }
- 
-            var token = _tokenService.CreateToken(currentUser.Username);
-            return Ok(token);
+            
         }
     }
 }

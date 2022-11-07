@@ -1,5 +1,6 @@
 using System.Text;
 using DatingApp.API.Data;
+using DatingApp.API.Data.Repositories;
 using DatingApp.API.Data.Seed;
 using DatingApp.API.Profiles;
 using DatingApp.API.Services;
@@ -18,6 +19,8 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
+services.AddScoped<IUserRepository, UserRepository>();
+services.AddScoped<IAuthService, AuthService>();
 services.AddScoped<ITokenService, TokenService>();
 services.AddScoped<IMemberService, MemberService>();
 services.AddAutoMapper(typeof(UserMapperProfile).Assembly);
