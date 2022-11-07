@@ -11,7 +11,7 @@ namespace DatingApp.API.Controllers
 {
     [Route("api/auth")]
     [AllowAnonymous]
-    public class AuthController : BaseController
+    public class AuthController : ControllerBase
     {
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
@@ -70,13 +70,6 @@ namespace DatingApp.API.Controllers
  
             var token = _tokenService.CreateToken(currentUser.Username);
             return Ok(token);
-        }
-
-        // [Authorize]
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok(_context.AppUsers.ToList());
         }
     }
 }

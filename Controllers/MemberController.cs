@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Namespace
 {
-    [Route("api/member")]
+    [Route("api/members")]
     [ApiController]
     public class MemberController : BaseController
     {
